@@ -1,11 +1,13 @@
 package com.kk.smartPhoneApp;
 
 import com.kk.smartPhoneApp.control.MemberMgr;
+import com.kk.smartPhoneApp.view.InsertMemberMenu;
 import com.kk.smartPhoneApp.view.LoginMenu;
 
 public class SmartPhoneMain {
 	public static void main(String[] args) {
 		LoginMenu loginMenu = new LoginMenu();
+		InsertMemberMenu insertMemberMenu = new InsertMemberMenu();
 		MemberMgr memMgr = new MemberMgr();
 		while (true) { // Loop Start
 			switch (loginMenu.menu()) { // Return Login Menu Number (Integer)
@@ -19,16 +21,18 @@ public class SmartPhoneMain {
 				}
 				break;
 			case LoginMenu.LOGIN_MENU_REGISTER: // Member Register
-				System.out.println("회원가입");
+				memMgr.memberInsert(insertMemberMenu.insertData());
 				break;
 			case LoginMenu.LOGIN_MENU_MODIFY: // Member Modify
-				System.out.println("회원수정");
+				System.out.println("회원 수정 기능이 구현되어야 할 영역입니다.");
+				System.out.println("구현 후 메소드를 적절히 추가해주세요.");
 				break;
 			case LoginMenu.LOGIN_MENU_DELETE: // Member Delete
-				System.out.println("회원탈퇴");
+				System.out.println("회원 탈퇴 기능이 구현되어야 할 영역입니다.");
+				System.out.println("구현 후 메소드를 적절히 추가해주세요.");
 				break;
 			case LoginMenu.LOGIN_MENU_VIEW: // Member View
-				memMgr.MemberView();
+				memMgr.memberView();
 				break;
 			case LoginMenu.LOGIN_MENU_EXIT: // Program Exit
 				System.out.println("프로그램을 종료합니다.");

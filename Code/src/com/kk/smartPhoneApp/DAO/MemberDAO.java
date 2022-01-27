@@ -36,7 +36,7 @@ public class MemberDAO {
 	}
 
 	// 로그인 시 DB에 아이디를 검색하고 비밀번호를 return 받음
-	public String doLogin(String member_id) { 
+	public String doLogin(String member_id) {
 		String SQL = "SELECT MEMBER.PASSWD FROM MEMBER WHERE ID=?";
 		String passwd = "";
 		try {
@@ -54,44 +54,10 @@ public class MemberDAO {
 		return passwd;
 	}
 
-	public void SelectMember() {
-		String SQL = "select * from member";
-		try {
-			memberList.clear();
-			rs = st.executeQuery(SQL); // Query Run
-			while (rs.next()) {
-				String id = rs.getString("ID");
-				System.out.print("ID : " + id);
-
-				String password = rs.getString("PASSWD");
-				System.out.print("  PASSWORD : " + password);
-
-				String memEmail = rs.getString("MEM_EMAIL");
-				System.out.print("  E-MAIL : " + memEmail);
-
-				String phoneNum = rs.getString("MEM_PHONE");
-				System.out.print("  PHONE : " + phoneNum);
-
-				String memName = rs.getString("MEM_NAME");
-				System.out.print("  NAME : " + memName);
-
-				String memAddress = rs.getString("MEM_ADDR");
-				System.out.print("  ADDRESS : " + memAddress);
-
-				System.out.println();
-				Member em = new Member(id, password, memEmail, phoneNum, memName, memAddress);
-				memberList.add(em);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public boolean doLoginMain(String id, String pw) {
 		try {
-				String dbPassWd = doLogin(id);
-			if (dbPassWd.equals(pw)&& dbPassWd.length() != 0) {
+			String dbPassWd = doLogin(id);
+			if (dbPassWd.equals(pw) && dbPassWd.length() != 0) {
 				Thread.sleep(100);
 				System.out.print("로그인 중입니다.");
 				Thread.sleep(100);
@@ -129,7 +95,60 @@ public class MemberDAO {
 
 	}
 
-	public void Quit() {
+	public void insertUserInfo(Member m) {
+		String SQL = "insert into MEMBER values (?, ?, ?, ?, ? ,?)";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, m.getId());
+			pstmt.setString(2, m.getPassword());
+			pstmt.setString(3, m.getEmailAddress());
+			pstmt.setString(4, m.getPhoneNumber());
+			pstmt.setString(5, m.getMemberName());
+			pstmt.setString(6, m.getMemberAddress());
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+
+	public void selectMember() {
+		String SQL = "select * from member";
+		try {
+			memberList.clear();
+			rs = st.executeQuery(SQL); // Query Run
+			while (rs.next()) {
+				String id = rs.getString("ID");
+				System.out.print("ID : " + id);
+
+				String password = rs.getString("PASSWD");
+				System.out.print("  PASSWORD : " + password);
+
+				String memEmail = rs.getString("MEM_EMAIL");
+				System.out.print("  E-MAIL : " + memEmail);
+
+				String phoneNum = rs.getString("MEM_PHONE");
+				System.out.print("  PHONE : " + phoneNum);
+
+				String memName = rs.getString("MEM_NAME");
+				System.out.print("  NAME : " + memName);
+
+				String memAddress = rs.getString("MEM_ADDR");
+				System.out.print("  ADDRESS : " + memAddress);
+
+				System.out.println();
+				Member em = new Member(id, password, memEmail, phoneNum, memName, memAddress);
+				memberList.add(em);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	public void quit() {
 		try {
 			rs.close();
 			st.close();
@@ -140,5 +159,6 @@ public class MemberDAO {
 		}
 
 	}
+
 
 }
