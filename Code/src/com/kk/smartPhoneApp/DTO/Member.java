@@ -58,5 +58,14 @@ public class Member {
 	public void setMemberAddress(String memberAddress) {
 		this.memberAddress = memberAddress;
 	}
-
+	
+	public void printMember() {
+		System.out.print("ID : " + id);
+		System.out.print("  PASSWORD : " + password);
+		System.out.print("  E-MAIL : " + emailAddress);
+		System.out.print("  PHONE : " + phoneNumber);
+		System.out.print("  NAME : " + memberName);
+		System.out.print("  ADDRESS : " + memberAddress);
+		System.out.println();
+	}
 }

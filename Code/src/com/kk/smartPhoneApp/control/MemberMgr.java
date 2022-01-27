@@ -12,6 +12,7 @@ public class MemberMgr {
 
 	public void memberView() {
 		mDao.selectMember();
+		mDao.printMemberList();
 	}
 
 	public void programExit() {
