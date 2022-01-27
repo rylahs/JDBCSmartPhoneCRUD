@@ -24,12 +24,10 @@ public class SmartPhoneMain {
 				memMgr.memberInsert(insertMemberMenu.insertData());
 				break;
 			case LoginMenu.LOGIN_MENU_MODIFY: // Member Modify
-				System.out.println("회원 수정 기능이 구현되어야 할 영역입니다.");
-				System.out.println("구현 후 메소드를 적절히 추가해주세요.");
+				memMgr.doLoginModify();
 				break;
 			case LoginMenu.LOGIN_MENU_DELETE: // Member Delete
-				System.out.println("회원 탈퇴 기능이 구현되어야 할 영역입니다.");
-				System.out.println("구현 후 메소드를 적절히 추가해주세요.");
+				memMgr.doLoginQuit();
 				break;
 			case LoginMenu.LOGIN_MENU_VIEW: // Member View
 				memMgr.memberView();

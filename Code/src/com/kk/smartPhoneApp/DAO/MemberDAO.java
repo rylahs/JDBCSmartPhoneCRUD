@@ -111,7 +111,85 @@ public class MemberDAO {
 		}
 	}
 	
+	public void modifyMemberInfoPW(String id, String pwd) {
+		String SQL = "Update MEMBER "
+				+ "set PASSWD = ? "
+				+ "where id = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
+	public void modifyMemberInfoEmail(String id, String email) {
+		String SQL = "Update MEMBER "
+				+ "set MEM_EMAIL = ? "
+				+ "where id = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, email);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void modifyMemberInfoPhone(String id, String phone) {
+		String SQL = "Update MEMBER "
+				+ "set MEM_PHONE = ? "
+				+ "where id = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, phone);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+	public void modifyMemberInfoName(String id, String name) {
+		String SQL = "Update MEMBER "
+				+ "set MEM_NAME = ? "
+				+ "where id = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void modifyMemberInfoAddress(String id, String addr) {
+		String SQL = "Update MEMBER "
+				+ "set MEM_ADDR = ? "
+				+ "where id = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, addr);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	public void deleteMember(String id) {
+		String SQL = "Delete FROM MEMBER "
+				+ "where id = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void selectMember() {
 		String SQL = "select * from member";
@@ -120,11 +198,24 @@ public class MemberDAO {
 			rs = st.executeQuery(SQL); // Query Run
 			while (rs.next()) {
 				String id = rs.getString("ID");
+				System.out.print("ID : " + id);
+
 				String password = rs.getString("PASSWD");
+				System.out.print("  PASSWORD : " + password);
+
 				String memEmail = rs.getString("MEM_EMAIL");
+				System.out.print("  E-MAIL : " + memEmail);
+
 				String phoneNum = rs.getString("MEM_PHONE");
+				System.out.print("  PHONE : " + phoneNum);
+
 				String memName = rs.getString("MEM_NAME");
+				System.out.print("  NAME : " + memName);
+
 				String memAddress = rs.getString("MEM_ADDR");
+				System.out.print("  ADDRESS : " + memAddress);
+
+				System.out.println();
 				Member em = new Member(id, password, memEmail, phoneNum, memName, memAddress);
 				memberList.add(em);
 			}
@@ -133,12 +224,6 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	public void printMemberList() {
-		for (int i = 0; i < memberList.size(); i++) {
-			memberList.get(i).printMember();
-		}
-	}
-
 	
 
 	public void quit() {
