@@ -10,8 +10,9 @@ public class LoginMenu {
 	public static final int LOGIN_MENU_DELETE = 4;
 	public static final int LOGIN_MENU_VIEW = 5;
 	public static final int LOGIN_MENU_EXIT = 0;
-	
+
 	Scanner sc = new Scanner(System.in);
+
 	public int menu() {
 		int menu = 0;
 		System.out.println("---------------------");
@@ -37,5 +38,5 @@ public class LoginMenu {
 		}
 		return menu;
 	}
-	
+
 }

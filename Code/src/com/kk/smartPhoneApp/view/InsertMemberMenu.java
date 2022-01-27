@@ -25,5 +25,4 @@ public class InsertMemberMenu {
 		return new Member(iMemberId, iMemberPassword, iMemberEmail, iMemberPhone, iMemberName, iMemberAddress);
 	}
 
-	
 }

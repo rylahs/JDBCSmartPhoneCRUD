@@ -15,7 +15,6 @@ public class MemberMgr {
 		mDao.selectMember();
 	}
 
-
 	public void programExit() {
 		mDao.quit();
 	}
@@ -30,10 +29,12 @@ public class MemberMgr {
 		System.out.println("로그인 횟수를 초과했습니다.");
 		System.out.println("메뉴로 돌아갑니다.");
 	}
+
 	public void printQuitMsg() {
 		System.out.println("회원 탈퇴가 완료되었습니다.");
 		System.out.println("지금까지 이용해주셔서 감사합니다.");
 	}
+
 	public boolean doLoginMain() {
 		boolean isLogin = false;
 		int loginCount = 0;
