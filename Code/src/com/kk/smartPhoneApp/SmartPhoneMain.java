@@ -4,6 +4,7 @@ import com.kk.smartPhoneApp.control.MemberMgr;
 import com.kk.smartPhoneApp.control.SmartPhoneMgr;
 import com.kk.smartPhoneApp.view.InsertMemberMenu;
 import com.kk.smartPhoneApp.view.LoginMenu;
+import com.kk.smartPhoneApp.view.SearchSmartPhoneMenu;
 import com.kk.smartPhoneApp.view.SmartPhoneMainMenu;
 
 public class SmartPhoneMain {
@@ -11,6 +12,7 @@ public class SmartPhoneMain {
 		LoginMenu loginMenu = new LoginMenu();
 		InsertMemberMenu insertMemberMenu = new InsertMemberMenu();
 		SmartPhoneMainMenu sMainMenu = new SmartPhoneMainMenu();
+		SearchSmartPhoneMenu sSearchMenu = new SearchSmartPhoneMenu();
 		SmartPhoneMgr smartMgr = new SmartPhoneMgr();
 		MemberMgr memMgr = new MemberMgr();
 		while (true) { // Loop Start
@@ -22,11 +24,26 @@ public class SmartPhoneMain {
 					while(true) { // SmartPhoneApp MainView Start
 						int sMainMenuNum = sMainMenu.menu();
 						if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_ALL) { // select * from ~
-							System.out.println("Select * from SmartPhone");
 							smartMgr.smartPhoneView();
+							smartMgr.printSearchCompleteMsg();
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_SEARCH) { //select * from ~ where = ?
-							System.out.println("Select * from SmartPhone where = ?");
+							while(true) {
+								int searchSmartPhoneMenuNum = sSearchMenu.selectMenu();
+								if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_ALL) {
+									smartMgr.smartPhoneView();
+									smartMgr.printSearchCompleteMsg();
+									break; // SmartPhone Search While Loop Break;
+								}
+								else if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_PREV) {
+									smartMgr.printGoPrev();
+									break;
+								}
+								else {
+									smartMgr.smartPhoneSearch(searchSmartPhoneMenuNum);
+									break;
+								}
+							}
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_INSERT) { // Insert into SmartPhone(....) values(....)
 							System.out.println("insert into SmartPhone() values()");

@@ -16,7 +16,7 @@ public class SmartPhoneDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs; // Query Result Set
 	private ArrayList<SmartPhone> smartPhoneList = new ArrayList<>();
-	
+	private String DBRowName[] = {"Product_Num", "name", "Model", "Price", "Company", "Screen", "Resolution","Scan_Rate", "Ram", "Disk", "Camera", "Battery", "Weight"};
 	public SmartPhoneDAO() {
 		String user = "root"; // c##tiger
 		String pw = "1234";
@@ -39,19 +39,19 @@ public class SmartPhoneDAO {
 			smartPhoneList.clear();
 			rs = st.executeQuery(SQL); // Query Run
 			while (rs.next()) {
-				int productNum = rs.getInt("Product_Num");
-				String name = rs.getString("Name");
-				String model = rs.getString("Model");
-				int price = rs.getInt("Price");
-				String company = rs.getString("Company");
-				double screen = rs.getDouble("Screen");
-				String resolution = rs.getString("Resolution");
-				int scanRate = rs.getInt("Scan_Rate");
-				int ram = rs.getInt("Ram");
-				int disk = rs.getInt("Disk");
-				int camera = rs.getInt("Camera");
-				int battery = rs.getInt("Battery");
-				int weight = rs.getInt("Weight");
+				int productNum = rs.getInt(DBRowName[0]);
+				String name = rs.getString(DBRowName[1]);
+				String model = rs.getString(DBRowName[2]);
+				int price = rs.getInt(DBRowName[3]);
+				String company = rs.getString(DBRowName[4]);
+				double screen = rs.getDouble(DBRowName[5]);
+				String resolution = rs.getString(DBRowName[6]);
+				int scanRate = rs.getInt(DBRowName[7]);
+				int ram = rs.getInt(DBRowName[8]);
+				int disk = rs.getInt(DBRowName[9]);
+				int camera = rs.getInt(DBRowName[10]);
+				int battery = rs.getInt(DBRowName[11]);
+				int weight = rs.getInt(DBRowName[12]);
 				SmartPhone smData = new SmartPhone(productNum, name, model, price, company, screen, resolution, scanRate, ram, disk, camera, battery, weight);
 				smartPhoneList.add(smData);
 			}
@@ -65,7 +65,95 @@ public class SmartPhoneDAO {
 			smartPhoneList.get(i).pritSmartPhone();
 		}
 	}
+	
+	public void searchByOneKeyWordsStringLike(String searchByString, int searchSmartPhoneMenuNum) {
+		String SQL = "select * from smartphone where " + DBRowName[searchSmartPhoneMenuNum - 1] + " like ?";
+		
+		try {
+			smartPhoneList.clear();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, "%"+searchByString+"%");
+			rs = pstmt.executeQuery(); // Query Run
+			while(rs.next()) {
+				int productNum = rs.getInt(DBRowName[0]);
+				String name = rs.getString(DBRowName[1]);
+				String model = rs.getString(DBRowName[2]);
+				int price = rs.getInt(DBRowName[3]);
+				String company = rs.getString(DBRowName[4]);
+				double screen = rs.getDouble(DBRowName[5]);
+				String resolution = rs.getString(DBRowName[6]);
+				int scanRate = rs.getInt(DBRowName[7]);
+				int ram = rs.getInt(DBRowName[8]);
+				int disk = rs.getInt(DBRowName[9]);
+				int camera = rs.getInt(DBRowName[10]);
+				int battery = rs.getInt(DBRowName[11]);
+				int weight = rs.getInt(DBRowName[12]);
+				SmartPhone smData = new SmartPhone(productNum, name, model, price, company, screen, resolution, scanRate, ram, disk, camera, battery, weight);
+				smartPhoneList.add(smData);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void searchByOneKeyWordsInteger(int searchByInt, int searchSmartPhoneMenuNum) {
+		String SQL = "select * from smartphone where " + DBRowName[searchSmartPhoneMenuNum - 1] + " >= ?";
+		
+		try {
+			smartPhoneList.clear();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, searchByInt);
+			rs = pstmt.executeQuery(); // Query Run
+			while(rs.next()) {
+				int productNum = rs.getInt(DBRowName[0]);
+				String name = rs.getString(DBRowName[1]);
+				String model = rs.getString(DBRowName[2]);
+				int price = rs.getInt(DBRowName[3]);
+				String company = rs.getString(DBRowName[4]);
+				double screen = rs.getDouble(DBRowName[5]);
+				String resolution = rs.getString(DBRowName[6]);
+				int scanRate = rs.getInt(DBRowName[7]);
+				int ram = rs.getInt(DBRowName[8]);
+				int disk = rs.getInt(DBRowName[9]);
+				int camera = rs.getInt(DBRowName[10]);
+				int battery = rs.getInt(DBRowName[11]);
+				int weight = rs.getInt(DBRowName[12]);
+				SmartPhone smData = new SmartPhone(productNum, name, model, price, company, screen, resolution, scanRate, ram, disk, camera, battery, weight);
+				smartPhoneList.add(smData);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
+	public void searchByOneKeyWordsDouble(double searchByDouble, int searchSmartPhoneMenuNum) {
+		String SQL = "select * from smartphone where " + DBRowName[searchSmartPhoneMenuNum - 1] + " >= ?";
+		
+		try {
+			smartPhoneList.clear();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setDouble(1, searchByDouble);
+			rs = pstmt.executeQuery(); // Query Run
+			while(rs.next()) {
+				int productNum = rs.getInt(DBRowName[0]);
+				String name = rs.getString(DBRowName[1]);
+				String model = rs.getString(DBRowName[2]);
+				int price = rs.getInt(DBRowName[3]);
+				String company = rs.getString(DBRowName[4]);
+				double screen = rs.getDouble(DBRowName[5]);
+				String resolution = rs.getString(DBRowName[6]);
+				int scanRate = rs.getInt(DBRowName[7]);
+				int ram = rs.getInt(DBRowName[8]);
+				int disk = rs.getInt(DBRowName[9]);
+				int camera = rs.getInt(DBRowName[10]);
+				int battery = rs.getInt(DBRowName[11]);
+				int weight = rs.getInt(DBRowName[12]);
+				SmartPhone smData = new SmartPhone(productNum, name, model, price, company, screen, resolution, scanRate, ram, disk, camera, battery, weight);
+				smartPhoneList.add(smData);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public void quit() {
 		try {
 			rs.close();
@@ -77,5 +165,7 @@ public class SmartPhoneDAO {
 		}
 
 	}
+
+
 	
 }
