@@ -1,6 +1,7 @@
 package com.kk.smartPhoneApp;
 
 import com.kk.smartPhoneApp.control.MemberMgr;
+import com.kk.smartPhoneApp.control.SmartPhoneMgr;
 import com.kk.smartPhoneApp.view.InsertMemberMenu;
 import com.kk.smartPhoneApp.view.LoginMenu;
 import com.kk.smartPhoneApp.view.SmartPhoneMainMenu;
@@ -10,6 +11,7 @@ public class SmartPhoneMain {
 		LoginMenu loginMenu = new LoginMenu();
 		InsertMemberMenu insertMemberMenu = new InsertMemberMenu();
 		SmartPhoneMainMenu sMainMenu = new SmartPhoneMainMenu();
+		SmartPhoneMgr smartMgr = new SmartPhoneMgr();
 		MemberMgr memMgr = new MemberMgr();
 		while (true) { // Loop Start
 			switch (loginMenu.menu()) { // Return Login Menu Number (Integer)
@@ -21,6 +23,7 @@ public class SmartPhoneMain {
 						int sMainMenuNum = sMainMenu.menu();
 						if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_ALL) { // select * from ~
 							System.out.println("Select * from SmartPhone");
+							smartMgr.smartPhoneView();
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_SEARCH) { //select * from ~ where = ?
 							System.out.println("Select * from SmartPhone where = ?");
@@ -56,7 +59,7 @@ public class SmartPhoneMain {
 				break;
 			case LoginMenu.LOGIN_MENU_EXIT: // Program Exit
 				System.out.println("프로그램을 종료합니다.");
-				memMgr.programExit();
+				memMgr.DatabaseExit();
 				System.exit(0);
 				break;
 			}

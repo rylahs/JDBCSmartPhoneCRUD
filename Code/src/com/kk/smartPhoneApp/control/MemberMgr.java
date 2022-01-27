@@ -13,9 +13,10 @@ public class MemberMgr {
 
 	public void memberView() {
 		mDao.selectMember();
+		mDao.printMemberList();
 	}
 
-	public void programExit() {
+	public void DatabaseExit() {
 		mDao.quit();
 	}
 
@@ -178,4 +179,5 @@ public class MemberMgr {
 			}
 		}
 	}
+
 }

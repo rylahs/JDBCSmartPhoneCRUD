@@ -198,24 +198,11 @@ public class MemberDAO {
 			rs = st.executeQuery(SQL); // Query Run
 			while (rs.next()) {
 				String id = rs.getString("ID");
-				System.out.print("ID : " + id);
-
 				String password = rs.getString("PASSWD");
-				System.out.print("  PASSWORD : " + password);
-
 				String memEmail = rs.getString("MEM_EMAIL");
-				System.out.print("  E-MAIL : " + memEmail);
-
 				String phoneNum = rs.getString("MEM_PHONE");
-				System.out.print("  PHONE : " + phoneNum);
-
 				String memName = rs.getString("MEM_NAME");
-				System.out.print("  NAME : " + memName);
-
 				String memAddress = rs.getString("MEM_ADDR");
-				System.out.print("  ADDRESS : " + memAddress);
-
-				System.out.println();
 				Member em = new Member(id, password, memEmail, phoneNum, memName, memAddress);
 				memberList.add(em);
 			}
@@ -224,7 +211,11 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	public void printMemberList() {
+		for (int i = 0; i < memberList.size(); i++) {
+			memberList.get(i).printMember();
+		}
+	}
 
 	public void quit() {
 		try {
