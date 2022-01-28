@@ -199,6 +199,36 @@ public class SmartPhoneMgr {
 				smartDao.modifySmartPhoneOnePointByDouble(modifyIndex, modifyByDouble, modifySelectMode);
 			}
 		}
+		printModifyCompleteMsg();
+	}
+	public int deleteSelectProductNum() {
+		printDeleteIndexQuestion();
+		int listSize = smartDao.getSmartListsize();
+		if (listSize == 0) {
+			System.out.println("스마트폰 데이터가 없습니다.");
+			return -1;
+		} else {
+			int deleteIdx = inputInteger(listSize);
+			return deleteIdx;
+		}
+	}
+	public void printDeleteIndexQuestion() {
+		System.out.print("삭제할 데이터를 선택해주세요 : ");
+	}
+	public void printDeleteIndexCompleteMsg() {
+		System.out.println("삭제가 완료되었습니다.");
+		System.out.println("프로그램 메인으로 돌아갑니다.");
+	}
+	
+	public void deleteSmartPhone() {
+		int deleteIndex = deleteSelectProductNum();
+		if (deleteIndex == -1) {
+			System.out.println("Error");
+			return;
+		} else {
+			smartDao.deleteSmartPhoneDataRows(deleteIndex);
+		}
+		printModifyCompleteMsg();
 	}
 
 }

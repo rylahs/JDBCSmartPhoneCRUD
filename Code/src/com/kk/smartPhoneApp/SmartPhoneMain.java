@@ -79,7 +79,8 @@ public class SmartPhoneMain {
 							}
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_DELETE) { // Delete ~
-							System.out.println("delete");
+							smartMgr.viewSmartPhone();
+							smartMgr.deleteSmartPhone();
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_LOGOUT) { // Program Exit or Logout? 
 							// System.out.println("프로그램을 종료합니다.");

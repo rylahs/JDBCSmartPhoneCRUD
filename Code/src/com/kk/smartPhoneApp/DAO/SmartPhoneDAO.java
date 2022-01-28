@@ -239,6 +239,18 @@ public class SmartPhoneDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deleteSmartPhoneDataRows(int deleteIndex) {
+		String SQL = "Delete FROM SmartPhone "
+				+ "where " + DBRowName[0] + " = ?";
+		try {
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, deleteIndex);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	public void quit() {
@@ -252,6 +264,7 @@ public class SmartPhoneDAO {
 		}
 
 	}
+
 
 
 
