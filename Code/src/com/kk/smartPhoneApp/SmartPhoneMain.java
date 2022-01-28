@@ -5,6 +5,7 @@ import com.kk.smartPhoneApp.control.SmartPhoneMgr;
 import com.kk.smartPhoneApp.view.InsertMemberMenu;
 import com.kk.smartPhoneApp.view.InsertSmartPhoneMenu;
 import com.kk.smartPhoneApp.view.LoginMenu;
+import com.kk.smartPhoneApp.view.ModifySmartPhoneMenu;
 import com.kk.smartPhoneApp.view.SearchSmartPhoneMenu;
 import com.kk.smartPhoneApp.view.SmartPhoneMainMenu;
 
@@ -15,6 +16,7 @@ public class SmartPhoneMain {
 		InsertSmartPhoneMenu insertSmartPhoneMenu = new InsertSmartPhoneMenu();
 		SmartPhoneMainMenu sMainMenu = new SmartPhoneMainMenu();
 		SearchSmartPhoneMenu sSearchMenu = new SearchSmartPhoneMenu();
+		ModifySmartPhoneMenu sModifyMenu = new ModifySmartPhoneMenu();
 		SmartPhoneMgr smartMgr = new SmartPhoneMgr();
 		MemberMgr memMgr = new MemberMgr();
 		while (true) { // Loop Start
@@ -26,14 +28,14 @@ public class SmartPhoneMain {
 					while(true) { // SmartPhoneApp MainView Start
 						int sMainMenuNum = sMainMenu.menu();
 						if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_ALL) { // select * from ~
-							smartMgr.smartPhoneView();
+							smartMgr.viewSmartPhone();
 							smartMgr.printSearchCompleteMsg();
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_SEARCH) { //select * from ~ where = ?
 							while(true) {
 								int searchSmartPhoneMenuNum = sSearchMenu.selectMenu();
 								if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_ALL) { // Select * from smartphone
-									smartMgr.smartPhoneView();
+									smartMgr.viewSmartPhone();
 									smartMgr.printSearchCompleteMsg();
 									break; // SmartPhone Search While Loop Break;
 								}
@@ -42,7 +44,7 @@ public class SmartPhoneMain {
 									break;
 								}
 								else { // Search Other Condition
-									smartMgr.smartPhoneSearch(searchSmartPhoneMenuNum);
+									smartMgr.searchSmartPhone(searchSmartPhoneMenuNum);
 									break;
 								}
 							}
@@ -51,7 +53,30 @@ public class SmartPhoneMain {
 							smartMgr.insertSmartPhone(insertSmartPhoneMenu.insertData());
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_MODIFY) { // Update ~~ set ~~ 
-							System.out.println("update");
+							while(true) {
+								int modifySmartPhoneMenuValue = sModifyMenu.modifyMenu();
+								if (modifySmartPhoneMenuValue == ModifySmartPhoneMenu.MODIFY_VIEW_ALL) {
+									smartMgr.viewSmartPhone();
+								}
+								else if (modifySmartPhoneMenuValue == ModifySmartPhoneMenu.MODIFY_PREV) {
+									smartMgr.printGoPrev();
+									break;
+								}
+								else { // else if (modifySmartPhoneMenuValue == ModifySmartPhoneMenu.MODIFY_DO) {}
+									while(true) {
+										smartMgr.viewSmartPhone();
+										int modifySelectMode = sModifyMenu.modifyModSelect();
+										if (modifySelectMode == ModifySmartPhoneMenu.MODIFY_MOD_PREV) {
+											smartMgr.printGoPrev();
+											break;
+										}
+										else { // 나머지는 하나만 update 하면 됨
+											smartMgr.modifySmartPhone(modifySelectMode);
+											break;
+										}
+									}
+								}
+							}
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_DELETE) { // Delete ~
 							System.out.println("delete");

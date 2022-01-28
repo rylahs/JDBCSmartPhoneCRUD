@@ -14,7 +14,6 @@ public class SmartPhone {
 	private int Camera; // 후면 1번 카메라 화소
 	private int Battery; // 배터리 용량 (mAh)
 	private int Weight; // 무게 (g)
-	
 
 	public SmartPhone() {
 		super();
@@ -158,6 +157,7 @@ public class SmartPhone {
 	public void setWeight(int weight) {
 		Weight = weight;
 	}
+
 	public void pritSmartPhone() {
 		System.out.println("상품번호 : " + Product_Num);
 		System.out.print("상품명 : " + Name);
@@ -169,11 +169,10 @@ public class SmartPhone {
 		System.out.print("  주사율 : " + Scan_Rate + "Hz");
 		System.out.println("  메모리 : " + Ram + "GB");
 		System.out.print("용량 : " + Disk + "GB");
-		System.out.print("  카메라 : " + Camera +"만 화소");
-		System.out.print("  배터리 : " + Battery +"mAh");
-		System.out.println("  무게 : " + Weight +"g");
+		System.out.print("  카메라 : " + Camera + "만 화소");
+		System.out.print("  배터리 : " + Battery + "mAh");
+		System.out.println("  무게 : " + Weight + "g");
 		System.out.println("------------------------");
 	}
-	
-	
+
 }

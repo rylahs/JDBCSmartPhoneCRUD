@@ -35,6 +35,10 @@ public class SmartPhoneDAO {
 		}
 	}
 
+	public int getSmartListsize() {
+		return smartPhoneList.size();
+	}
+	
 	public void selectSmartPhone() {
 		String SQL = "select * from smartphone";
 		try {
@@ -192,6 +196,51 @@ public class SmartPhoneDAO {
 		}
 	}
 
+	public void modifySmartPhoneOnePointByString(int ProdNum, String modifyByString, int modifySmartPhoneMenuNum) {
+		String SQL = "update Smartphone "
+				+ "set " + DBRowName[modifySmartPhoneMenuNum - 1] + " = ? "
+						+ "where " + DBRowName[0] + " = ?";
+		try {
+			smartPhoneList.clear();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, modifyByString);
+			pstmt.setInt(2, ProdNum);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void modifySmartPhoneOnePointByInteger(int ProdNum, int modifyByInteger, int modifySmartPhoneMenuNum) {
+		String SQL = "update Smartphone "
+				+ "set " + DBRowName[modifySmartPhoneMenuNum - 1] + " = ? "
+						+ "where " + DBRowName[0] + " = ?";
+		try {
+			smartPhoneList.clear();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, modifyByInteger);
+			pstmt.setInt(2, ProdNum);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void modifySmartPhoneOnePointByDouble(int ProdNum, double modifyByDouble, int modifySmartPhoneMenuNum) {
+		String SQL = "update Smartphone "
+				+ "set " + DBRowName[modifySmartPhoneMenuNum - 1] + " = ? "
+						+ "where " + DBRowName[0] + " = ?";
+		try {
+			smartPhoneList.clear();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setDouble(1, modifyByDouble);
+			pstmt.setInt(2, ProdNum);
+			pstmt.executeUpdate(); // Query Run
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	public void quit() {
 		try {
 			rs.close();
@@ -203,5 +252,12 @@ public class SmartPhoneDAO {
 		}
 
 	}
+
+
+
+
+
+
+
 
 }

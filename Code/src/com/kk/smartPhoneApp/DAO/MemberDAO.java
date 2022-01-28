@@ -216,6 +216,7 @@ public class MemberDAO {
 			memberList.get(i).printMember();
 		}
 	}
+	
 
 	public void quit() {
 		try {
