@@ -3,6 +3,7 @@ package com.kk.smartPhoneApp;
 import com.kk.smartPhoneApp.control.MemberMgr;
 import com.kk.smartPhoneApp.control.SmartPhoneMgr;
 import com.kk.smartPhoneApp.view.InsertMemberMenu;
+import com.kk.smartPhoneApp.view.InsertSmartPhoneMenu;
 import com.kk.smartPhoneApp.view.LoginMenu;
 import com.kk.smartPhoneApp.view.SearchSmartPhoneMenu;
 import com.kk.smartPhoneApp.view.SmartPhoneMainMenu;
@@ -11,6 +12,7 @@ public class SmartPhoneMain {
 	public static void main(String[] args) {
 		LoginMenu loginMenu = new LoginMenu();
 		InsertMemberMenu insertMemberMenu = new InsertMemberMenu();
+		InsertSmartPhoneMenu insertSmartPhoneMenu = new InsertSmartPhoneMenu();
 		SmartPhoneMainMenu sMainMenu = new SmartPhoneMainMenu();
 		SearchSmartPhoneMenu sSearchMenu = new SearchSmartPhoneMenu();
 		SmartPhoneMgr smartMgr = new SmartPhoneMgr();
@@ -30,23 +32,23 @@ public class SmartPhoneMain {
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_SEARCH) { //select * from ~ where = ?
 							while(true) {
 								int searchSmartPhoneMenuNum = sSearchMenu.selectMenu();
-								if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_ALL) {
+								if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_ALL) { // Select * from smartphone
 									smartMgr.smartPhoneView();
 									smartMgr.printSearchCompleteMsg();
 									break; // SmartPhone Search While Loop Break;
 								}
-								else if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_PREV) {
+								else if (searchSmartPhoneMenuNum == SearchSmartPhoneMenu.SEARCH_MENU_PREV) { // Go Previous
 									smartMgr.printGoPrev();
 									break;
 								}
-								else {
+								else { // Search Other Condition
 									smartMgr.smartPhoneSearch(searchSmartPhoneMenuNum);
 									break;
 								}
 							}
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_INSERT) { // Insert into SmartPhone(....) values(....)
-							System.out.println("insert into SmartPhone() values()");
+							smartMgr.insertSmartPhone(insertSmartPhoneMenu.insertData());
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_MODIFY) { // Update ~~ set ~~ 
 							System.out.println("update");

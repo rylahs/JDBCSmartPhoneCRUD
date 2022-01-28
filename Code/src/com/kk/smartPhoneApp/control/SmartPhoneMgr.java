@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.kk.smartPhoneApp.DAO.SmartPhoneDAO;
+import com.kk.smartPhoneApp.DTO.SmartPhone;
 import com.kk.smartPhoneApp.view.SearchSmartPhoneMenu;
 
 public class SmartPhoneMgr {
@@ -102,5 +103,9 @@ public class SmartPhoneMgr {
 		else {
 			System.out.println("잘못된 값의 입력입니다.");
 		}
+	}
+	
+	public void insertSmartPhone(SmartPhone sm) {
+		smartDao.insertSmartPhoneInfo(sm);
 	}
 }
