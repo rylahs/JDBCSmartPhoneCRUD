@@ -58,10 +58,10 @@ public class MemberDAO {
 		return passwd;
 	}
 
-	public boolean doLoginMain(String id, String pw) {
+	public boolean doLoginMain(String id, String pw) { // true : Login Success , false : Login Fail
 		try {
 			String dbPassWd = doLogin(id);
-			if (dbPassWd.equals(pw) && dbPassWd.length() != 0) {
+			if (dbPassWd.equals(pw) && dbPassWd.length() != 0) { // password == database password && edge case 
 				Thread.sleep(100);
 				System.out.print("로그인 중입니다.");
 				Thread.sleep(100);
@@ -75,7 +75,7 @@ public class MemberDAO {
 				Thread.sleep(100);
 				System.out.println("로그인 성공!");
 				return true;
-			} else {
+			} else { // password != database password
 				Thread.sleep(100);
 				System.out.print("로그인 중입니다.");
 				Thread.sleep(100);
@@ -99,7 +99,7 @@ public class MemberDAO {
 
 	}
 
-	public void insertUserInfo(Member m) {
+	public void insertUserInfo(Member m) { // Insert Query
 		String SQL = "insert into MEMBER values (?, ?, ?, ?, ? ,?)";
 		try {
 			pstmt = con.prepareStatement(SQL);
@@ -115,7 +115,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public void modifyMemberInfoPW(String id, String pwd) {
+	public void modifyMemberInfoPW(String id, String pwd) { // Update Query
 		String SQL = "Update MEMBER "
 				+ "set PASSWD = ? "
 				+ "where id = ?";
@@ -129,7 +129,7 @@ public class MemberDAO {
 		}
 	}
 
-	public void modifyMemberInfoEmail(String id, String email) {
+	public void modifyMemberInfoEmail(String id, String email) { // Update Query
 		String SQL = "Update MEMBER "
 				+ "set MEM_EMAIL = ? "
 				+ "where id = ?";
@@ -142,7 +142,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	public void modifyMemberInfoPhone(String id, String phone) {
+	public void modifyMemberInfoPhone(String id, String phone) { // Update Query
 		String SQL = "Update MEMBER "
 				+ "set MEM_PHONE = ? "
 				+ "where id = ?";
@@ -155,7 +155,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}	
-	public void modifyMemberInfoName(String id, String name) {
+	public void modifyMemberInfoName(String id, String name) { // Update Query
 		String SQL = "Update MEMBER "
 				+ "set MEM_NAME = ? "
 				+ "where id = ?";
@@ -169,7 +169,7 @@ public class MemberDAO {
 		}
 	}
 
-	public void modifyMemberInfoAddress(String id, String addr) {
+	public void modifyMemberInfoAddress(String id, String addr) { // Update Query
 		String SQL = "Update MEMBER "
 				+ "set MEM_ADDR = ? "
 				+ "where id = ?";
@@ -183,7 +183,7 @@ public class MemberDAO {
 		}
 	}	
 	
-	public void deleteMember(String id) {
+	public void deleteMember(String id) { // Delete Query
 		String SQL = "Delete FROM MEMBER "
 				+ "where id = ?";
 		try {
@@ -195,7 +195,7 @@ public class MemberDAO {
 		}
 	}
 
-	public void selectMember() {
+	public void selectMember() { // Select * from Member Query
 		String SQL = "select * from member";
 		try {
 			memberList.clear();
@@ -215,14 +215,14 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	public void printMemberList() {
+	public void printMemberList() { // Print ArrayList
 		for (int i = 0; i < memberList.size(); i++) {
 			memberList.get(i).printMember();
 		}
 	}
 	
 
-	public void quit() {
+	public void quit() { // DataBase Close
 		try {
 			rs.close();
 			st.close();

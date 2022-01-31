@@ -1,10 +1,10 @@
 package com.kk.smartPhoneApp.DTO;
 
 public class SmartPhone {
-	private int Product_Num;
-	private String Name; // 갤럭시A52
+	private int Product_Num; // Product Number(상품 번호) Auto Increment Use
+	private String Name; // ex) 갤럭시 A52S
 	private String Model; // 모델명 (SM-756N)
-	private int Price;
+	private int Price; // 가격 
 	private String Company; // 제조사 (APPLE)
 	private double Screen; // 화면 크기 (19.01cm)
 	private String Resolution; // 해상도 (1920x1080)
@@ -15,10 +15,12 @@ public class SmartPhone {
 	private int Battery; // 배터리 용량 (mAh)
 	private int Weight; // 무게 (g)
 
+	// Default Constructor
 	public SmartPhone() {
 		super();
 	}
 
+	// Constructor Using Insert Query
 	public SmartPhone(String name, String model, int price, String company, double screen, String resolution,
 			int scan_Rate, int ram, int disk, int camera, int battery, int weight) {
 		super();
@@ -36,6 +38,7 @@ public class SmartPhone {
 		Weight = weight;
 	}
 
+	// Constructor Use Input ArrayList
 	public SmartPhone(int product_Num, String name, String model, int price, String company, double screen,
 			String resolution, int scan_Rate, int ram, int disk, int camera, int battery, int weight) {
 		super();
@@ -54,6 +57,7 @@ public class SmartPhone {
 		Weight = weight;
 	}
 
+	// Getter, Setter
 	public int getProduct_Num() {
 		return Product_Num;
 	}
@@ -158,6 +162,8 @@ public class SmartPhone {
 		Weight = weight;
 	}
 
+	
+	// Print SmartPhone
 	public void pritSmartPhone() {
 		System.out.println("상품번호 : " + Product_Num);
 		System.out.print("상품명 : " + Name);

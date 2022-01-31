@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoginMenu {
+	// Static Final Login Menu Values
 	public static final int LOGIN_MENU_LOGIN = 1;
 	public static final int LOGIN_MENU_REGISTER = 2;
 	public static final int LOGIN_MENU_MODIFY = 3;

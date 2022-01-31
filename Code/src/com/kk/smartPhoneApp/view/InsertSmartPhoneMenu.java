@@ -37,9 +37,9 @@ public class InsertSmartPhoneMenu {
 		int weight = integerInput();
 		
 		return new SmartPhone(name, model, price, company, screen, resolution,
-				scanRate, ram, disk, camera, battery, weight);
+				scanRate, ram, disk, camera, battery, weight); // Return Value : SmartPhone Constructor Use
 	}
-	public int integerInput() {
+	public int integerInput() { // Integer Input Method , InputMismatchException fix
 		int inputData = -1;
 		while (true) {
 			try {
@@ -56,7 +56,7 @@ public class InsertSmartPhoneMenu {
 		sc.nextLine();
 		return inputData;
 	}
-	public double doubleInput() {
+	public double doubleInput() { // Double Input Method , InputMismatchException fix
 		double inputData = -1.0;
 		while (true) {
 			try {

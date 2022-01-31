@@ -1,17 +1,19 @@
 package com.kk.smartPhoneApp.DTO;
 
 public class Member {
-	private String id;
-	private String password;
-	private String emailAddress;
-	private String phoneNumber;
-	private String memberName;
-	private String memberAddress;
+	private String id; // ID
+	private String password; // PassWord
+	private String emailAddress; // E-mail
+	private String phoneNumber; // Phone
+	private String memberName; // Name
+	private String memberAddress; // Address
 
+	// Default Constructor
 	public Member() {
 		super();
 	}
 
+	// Constructor Member
 	public Member(String id, String password, String emailAddress, String phoneNumber, String memberName,
 			String memberAddress) {
 		super();
@@ -23,6 +25,7 @@ public class Member {
 		this.memberAddress = memberAddress;
 	}
 
+	// Getter , Setter
 	public String getId() {
 		return id;
 	}
@@ -71,6 +74,7 @@ public class Member {
 		this.memberAddress = memberAddress;
 	}
 	
+	// Print Member
 	public void printMember() {
 		System.out.print("ID : " + id);
 		System.out.print("  PASSWORD : " + password);

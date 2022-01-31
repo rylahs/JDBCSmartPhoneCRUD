@@ -22,7 +22,7 @@ public class InsertMemberMenu {
 		String iMemberName = sc.nextLine();
 		System.out.print("аж╪р : ");
 		String iMemberAddress = sc.nextLine();
-		return new Member(iMemberId, iMemberPassword, iMemberEmail, iMemberPhone, iMemberName, iMemberAddress);
+		return new Member(iMemberId, iMemberPassword, iMemberEmail, iMemberPhone, iMemberName, iMemberAddress); // Return Value : Member Constructor Use
 	}
 
 }

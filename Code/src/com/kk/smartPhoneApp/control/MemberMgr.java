@@ -12,35 +12,35 @@ public class MemberMgr {
 	Scanner sc = new Scanner(System.in); // Scanner
 
 	public void memberView() {
-		mDao.selectMember();
-		mDao.printMemberList();
+		mDao.selectMember(); // ArrayList input Member Select Query
+		mDao.printMemberList(); // Print
 	}
 
 	public void DatabaseExit() {
-		mDao.quit();
+		mDao.quit(); // Quit Database close();
 	}
 
-	public void printLoginFailMsg(int loginCount) {
+	public void printLoginFailMsg(int loginCount) { // Print Login Fail Message
 		System.out.println("로그인에 " + loginCount + "회 실패했습니다.");
 		System.out.println((3 - loginCount) + "회를 더 실패하면 로그인 메뉴로 돌아갑니다.");
 	}
 
-	public void printLoginOverCount(int loginCount) {
+	public void printLoginOverCount(int loginCount) { // Print Login Fail Over Message
 		System.out.println("로그인에 " + loginCount + "회 실패 했습니다.");
 		System.out.println("로그인 횟수를 초과했습니다.");
 		System.out.println("메뉴로 돌아갑니다.");
 	}
 
-	public void printQuitMsg() {
+	public void printQuitMsg() { // Print Member Quit Complete Message
 		System.out.println("회원 탈퇴가 완료되었습니다.");
 		System.out.println("지금까지 이용해주셔서 감사합니다.");
 	}
 
-	public boolean doLoginMain() {
+	public boolean doLoginMain() { // Login Main
 		boolean isLogin = false;
-		int loginCount = 0;
+		int loginCount = 0; 
 		while (true) {
-			if (loginCount >= 3) {
+			if (loginCount >= 3) { // Login Fail >= 3
 				printLoginOverCount(loginCount);
 				break;
 			}
@@ -68,12 +68,12 @@ public class MemberMgr {
 		mDao.insertUserInfo(m);
 	}
 
-	// 회원 수정
+	// 회원 수정 성공 메세지
 	public void printMoidfyComplete() {
 		System.out.println("회원 정보 변경이 완료되었습니다.");
 	}
 
-	public void doLoginModify() {
+	public void doLoginModify() { // 로그인이 되어야 회원 정보 수정이 가능
 		boolean isLogin = false;
 		int loginCount = 0;
 		while (true) {
@@ -89,7 +89,7 @@ public class MemberMgr {
 			if (isLogin) {
 				while (true) {
 					int modNum = modifyMemberMenu.modifyMember();
-					if (modNum == ModifyMemberMenu.MEMBER_MODIFY_ALL_INFO) {
+					if (modNum == ModifyMemberMenu.MEMBER_MODIFY_ALL_INFO) { // 모두 수정 => 하나하나 정보 수정 메소드를 모두 실행 
 						System.out.print("변경할 비밀번호를 입력해주세요 : ");
 						String afterPW = sc.nextLine();
 						System.out.print("변경할 이메일을 입력해주세요 : ");
@@ -107,31 +107,31 @@ public class MemberMgr {
 						mDao.modifyMemberInfoAddress(inputID, afterAddress);
 						printMoidfyComplete();
 						return;
-					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_PASSWORD) {
+					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_PASSWORD) { // 비밀번호 수정
 						System.out.print("변경할 비밀번호를 입력해주세요 : ");
 						String afterPW = sc.nextLine();
 						mDao.modifyMemberInfoPW(inputID, afterPW);
 						printMoidfyComplete();
 						return;
-					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_EMAIL) {
+					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_EMAIL) { // 이메일 수정
 						System.out.print("변경할 이메일을 입력해주세요 : ");
 						String afterEmail = sc.nextLine();
 						mDao.modifyMemberInfoEmail(inputID, afterEmail);
 						printMoidfyComplete();
 						return;
-					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_PHONE) {
+					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_PHONE) { // 전화번호 수정
 						System.out.print("변경할 전화번호을 입력해주세요 : ");
 						String afterPhone = sc.nextLine();
 						mDao.modifyMemberInfoPhone(inputID, afterPhone);
 						printMoidfyComplete();
 						return;
-					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_NAME) {
+					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_NAME) { // 이름 수정
 						System.out.print("변경할 이름을 입력해주세요 : ");
 						String afterName = sc.nextLine();
 						mDao.modifyMemberInfoName(inputID, afterName);
 						printMoidfyComplete();
 						return;
-					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_ADDRESS) {
+					} else if (modNum == ModifyMemberMenu.MEMBER_MODIFY_ADDRESS) { // 주소 수정
 						System.out.print("변경할 주소를 입력해주세요 : ");
 						String afterAddress = sc.nextLine();
 						mDao.modifyMemberInfoAddress(inputID, afterAddress);
@@ -139,22 +139,22 @@ public class MemberMgr {
 						break;
 					}
 
-					else if (modNum == ModifyMemberMenu.MEMBER_PREV) {
+					else if (modNum == ModifyMemberMenu.MEMBER_PREV) { // 이전으로
 						System.out.println("이전으로 돌아갑니다.");
 						return;
 					}
 
 				}
 			} else {
-				loginCount++;
+				loginCount++; // 로그인 실패시 실패 카운트 1 증가
 				if (loginCount < 3) {
-					printLoginFailMsg(loginCount);
+					printLoginFailMsg(loginCount); // 3회 이하 로그인 실패시 메시지 출력
 				}
 			}
 		}
 	}
 
-	public void doLoginQuit() {
+	public void doLoginQuit() { // 회원 탈퇴를 위한 로그인
 		boolean isLogin = false;
 		int loginCount = 0;
 		while (true) {
@@ -168,8 +168,8 @@ public class MemberMgr {
 			String inputPW = sc.nextLine();
 			isLogin = mDao.doLoginMain(inputID, inputPW);
 			if (isLogin) {
-				mDao.deleteMember(inputID);
-				printQuitMsg();
+				mDao.deleteMember(inputID); // 회원 탈퇴 Query 수행
+				printQuitMsg(); // 회원 탈퇴 Message 출력
 				return;
 			} else {
 				loginCount++;

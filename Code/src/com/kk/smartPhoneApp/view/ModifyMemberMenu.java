@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ModifyMemberMenu {
+	// Static Final ModifyMember Menu Values
 	public static final int MEMBER_MODIFY_ALL_INFO = 1;
 	public static final int MEMBER_MODIFY_PASSWORD = 2;
 	public static final int MEMBER_MODIFY_EMAIL = 3;

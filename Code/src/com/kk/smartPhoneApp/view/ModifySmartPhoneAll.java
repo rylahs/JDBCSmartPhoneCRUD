@@ -37,9 +37,9 @@ public class ModifySmartPhoneAll {
 		int weight = integerInput();
 		
 		return new SmartPhone(name, model, price, company, screen, resolution,
-				scanRate, ram, disk, camera, battery, weight);
+				scanRate, ram, disk, camera, battery, weight); // Return Value : SmartPhone Constructor Use
 	}
-	public int integerInput() {
+	public int integerInput() { // Integer Input Method
 		int inputData = -1;
 		while (true) {
 			try {
@@ -53,10 +53,10 @@ public class ModifySmartPhoneAll {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
 		}
-		sc.nextLine();
+		sc.nextLine(); // Keyboard Buffer
 		return inputData;
 	}
-	public double doubleInput() {
+	public double doubleInput() { // Double Input Method
 		double inputData = -1.0;
 		while (true) {
 			try {
@@ -70,7 +70,7 @@ public class ModifySmartPhoneAll {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
 		}
-		sc.nextLine();
+		sc.nextLine(); // KeyBoard Buffer
 		return inputData;
 	}
 }
