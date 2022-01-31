@@ -19,6 +19,14 @@ public class SmartPhoneDAO {
 	private String DBRowName[] = { "Product_Num", "name", "Model", "Price", "Company", "Screen", "Resolution",
 			"Scan_Rate", "Ram", "Disk", "Camera", "Battery", "Weight" };
 
+	public ArrayList<SmartPhone> getSmartPhoneList() {
+		return smartPhoneList;
+	}
+
+	public void setSmartPhoneList(ArrayList<SmartPhone> smartPhoneList) {
+		this.smartPhoneList = smartPhoneList;
+	}
+
 	public SmartPhoneDAO() {
 		String user = "root"; // c##tiger
 		String pw = "1234";

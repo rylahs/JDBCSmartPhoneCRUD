@@ -17,6 +17,10 @@ public class MemberDAO {
 	private PreparedStatement pstmt;
 	private ArrayList<Member> memberList = new ArrayList<>();
 
+	public ArrayList<Member> getMemberList() {
+		return memberList;
+	}
+
 	public MemberDAO() {
 		String user = "root"; // c##tiger
 		String pw = "1234";

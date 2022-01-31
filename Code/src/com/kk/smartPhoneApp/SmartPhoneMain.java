@@ -21,14 +21,14 @@ public class SmartPhoneMain {
 		MemberMgr memMgr = new MemberMgr();
 		while (true) { // Loop Start
 			switch (loginMenu.menu()) { // Return Login Menu Number (Integer)
-			case LoginMenu.LOGIN_MENU_LOGIN:
+			case LoginMenu.LOGIN_MENU_LOGIN: // Do Login
 				boolean isLogin = memMgr.doLoginMain();
-				if (!isLogin) {
-				} else {
+				if (!isLogin) { // Login Fail
+				} else { // Login Success
 					while(true) { // SmartPhoneApp MainView Start
 						int sMainMenuNum = sMainMenu.menu();
-						if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_ALL) { // select * from ~
-							smartMgr.viewSmartPhone();
+						if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_ALL) { // select * from smartphone
+							smartMgr.viewSmartPhone(); 
 							smartMgr.printSearchCompleteMsg();
 						}
 						else if (sMainMenuNum == SmartPhoneMainMenu.MAIN_MENU_VIEW_SEARCH) { //select * from ~ where = ?
@@ -70,11 +70,12 @@ public class SmartPhoneMain {
 											smartMgr.printGoPrev();
 											break;
 										}
-										else { // 나머지는 하나만 update 하면 됨
+										else { // do update
 											smartMgr.modifySmartPhone(modifySelectMode);
 											break;
 										}
 									}
+									break;
 								}
 							}
 						}

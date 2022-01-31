@@ -43,25 +43,6 @@ public class SmartPhoneMgr {
 		return inputInteger;
 	}
 
-	public int inputInteger(int range) {
-		int inputInteger = 0;
-
-		while (true) {
-			try {
-				inputInteger = sc.nextInt();
-				sc.nextLine();
-				if (inputInteger >= 1 && inputInteger <= range)
-					break;
-				else
-					System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			} catch (InputMismatchException e) {
-				sc = new Scanner(System.in);
-				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			}
-		}
-		return (inputInteger);
-	}
-
 	public double inputDouble() {
 		double inputInteger = 0;
 
@@ -145,12 +126,26 @@ public class SmartPhoneMgr {
 	public int ModifySelectProductNum() {
 		printModifyIndexQuestion();
 		int listSize = smartDao.getSmartListsize();
+		boolean listisFind = false;
+		int modifyIdx = -1;
 		if (listSize == 0) {
 			System.out.println("스마트폰 데이터가 없습니다.");
 			return -1;
 		} else {
-			int modifyIdx = inputInteger(listSize);
+			modifyIdx = inputInteger();
+
+			for (int i = 0; i < smartDao.getSmartPhoneList().size(); i++)	{
+				if (modifyIdx == smartDao.getSmartPhoneList().get(i).getProduct_Num()) {
+					listisFind = true;
+				}
+			}
+
+		}
+		if (listisFind)
 			return modifyIdx;
+		else {
+			System.out.println("찾으려는 Prod_Num은 존재하지 않습니다. 다른 번호를 선택해주세요.");
+			return -1;
 		}
 	}
 
@@ -204,12 +199,26 @@ public class SmartPhoneMgr {
 	public int deleteSelectProductNum() {
 		printDeleteIndexQuestion();
 		int listSize = smartDao.getSmartListsize();
+		boolean listisFind = false;
+		int deleteIdx = -1;
 		if (listSize == 0) {
 			System.out.println("스마트폰 데이터가 없습니다.");
 			return -1;
 		} else {
-			int deleteIdx = inputInteger(listSize);
+			deleteIdx = inputInteger();
+
+			for (int i = 0; i < smartDao.getSmartPhoneList().size(); i++)	{
+				if (deleteIdx == smartDao.getSmartPhoneList().get(i).getProduct_Num()) {
+					listisFind = true;
+				}
+			}
+
+		}
+		if (listisFind)
 			return deleteIdx;
+		else {
+			System.out.println("찾으려는 Prod_Num은 존재하지 않습니다. 다른 번호를 선택해주세요.");
+			return -1;
 		}
 	}
 	public void printDeleteIndexQuestion() {
@@ -223,12 +232,11 @@ public class SmartPhoneMgr {
 	public void deleteSmartPhone() {
 		int deleteIndex = deleteSelectProductNum();
 		if (deleteIndex == -1) {
-			System.out.println("Error");
 			return;
 		} else {
 			smartDao.deleteSmartPhoneDataRows(deleteIndex);
 		}
-		printModifyCompleteMsg();
+		printDeleteIndexCompleteMsg();
 	}
 
 }
