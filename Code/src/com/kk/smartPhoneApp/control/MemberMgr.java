@@ -136,7 +136,7 @@ public class MemberMgr {
 						String afterAddress = sc.nextLine();
 						mDao.modifyMemberInfoAddress(inputID, afterAddress);
 						printMoidfyComplete();
-						break;
+						return;
 					}
 
 					else if (modNum == ModifyMemberMenu.MEMBER_PREV) { // 이전으로
